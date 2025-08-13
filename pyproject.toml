@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "datareg"
-version = "0.2.0"
+version = "0.3.0"
 description = "Data regularization layers"
 authors = [{name="Umberto Barros", email="umbertobarrosf@gmail.com"}]
 readme = "README.md"

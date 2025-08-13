@@ -128,7 +128,7 @@ class RandomSaltAndPepper(Layer):
 
 
 class RandAugmentGaussian(Layer):
-    def __init__(self, num_layers=2, magnitude=9, gaussian_stddev=0.05, **kwargs):
+    def __init__(self, value_range=(0, 1), augmentations_per_image=3, rate=1, magnitude=9, gaussian_stddev=0.05, **kwargs):
         """
         Combines Keras RandAugment with CustomGaussianNoise.
 
@@ -138,7 +138,12 @@ class RandAugmentGaussian(Layer):
             gaussian_stddev (float): Stddev for Gaussian noise.
         """
         super().__init__(**kwargs)
-        self.randaugment = keras_cv.layers.RandAugment(num_layers=num_layers, magnitude=magnitude)
+        self.randaugment = keras_cv.layers.RandAugment(
+            value_range=value_range,
+            augmentations_per_image=augmentations_per_image,
+            rate=rate,
+            magnitude=magnitude
+        )
         self.gaussian_noise = CustomGaussianNoise(stddev=gaussian_stddev)
 
     def call(self, inputs, training=False):
